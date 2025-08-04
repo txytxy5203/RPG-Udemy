@@ -9,6 +9,7 @@ public class SkillManager : MonoBehaviour
     public DashSkill dash;
     public CloneSkill clone;
     public SwordSkill sword;
+    public BlackHoleSKill blackHole;
     private void Awake()
     {
         if (instance != null)

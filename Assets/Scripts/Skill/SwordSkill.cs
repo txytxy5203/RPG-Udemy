@@ -1,5 +1,6 @@
 using System.Net.Http.Headers;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum E_SwordType
 {
@@ -127,8 +128,15 @@ public class SwordSkill : Skill
 
     public Vector2 GetAimInput()
     {
-        //如果这里是gamepad怎么办
-        return (Camera.main.ScreenToWorldPoint(Input.mousePosition)
-                            - player.transform.position).normalized;
+        Debug.Log(Player.Instance.playerInput.actions["AimStick"].ReadValue<Vector2>());
+        if (Player.Instance.playerInput.actions["AimStick"].ReadValue<Vector2>().x != 0f)
+        {
+            Vector2 stick = Player.Instance.playerInput.actions["AimStick"].ReadValue<Vector2>();
+            return stick.normalized;
+        }
+        // 2. 鼠标屏幕坐标
+        return (Camera.main.ScreenToWorldPoint(
+        Player.Instance.playerInput.actions["AimMouse"].ReadValue<Vector2>())
+                        - player.transform.position).normalized;
     }
 }

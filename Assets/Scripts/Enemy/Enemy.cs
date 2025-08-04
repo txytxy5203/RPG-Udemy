@@ -28,6 +28,7 @@ public class Enemy : Entity
     public float moveSpeed;
     public float moveToPlayerSpeed;
     public float idleTime;
+    float deafaultSpeed;
 
     [Header("Attack Info")]
     public float attackDis;
@@ -44,7 +45,7 @@ public class Enemy : Entity
     {
         base.Awake();
         stateMachine = new EnemyStateMachine();
-
+        deafaultSpeed = moveSpeed;
     }
     
     protected override void Start()
@@ -60,6 +61,25 @@ public class Enemy : Entity
         isDetectedPlayer = DetectPlayer();
     }
 
+    public virtual void FreezeTime(bool _timeFrozen)
+    {
+        if(_timeFrozen)
+        {
+            moveSpeed = 0;
+            animator.speed = 0;
+        }
+        else
+        {
+            moveSpeed = deafaultSpeed;
+            animator.speed = 1;
+        }
+    }
+    protected virtual IEnumerator FreezeTimeFor(float _seconds)
+    {
+        FreezeTime(true);
+        yield return new WaitForSeconds(_seconds);
+        FreezeTime(false);
+    }
     public virtual void OpenCounterAttackWindow()
     {
         canBeStunned = true;
