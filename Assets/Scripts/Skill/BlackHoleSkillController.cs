@@ -8,6 +8,7 @@ public class BlackHoleSkillController : MonoBehaviour
     public float growSpeed;
     public bool canGrow;
     public List<Transform> targets;
+    public GameObject uiObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +28,11 @@ public class BlackHoleSkillController : MonoBehaviour
     {
         if(collision.GetComponent<Enemy>() != null)
         {
+            //当黑洞碰到Enemy后 执行的逻辑
             collision.GetComponent<Enemy>().FreezeTime(true);
-            //targets.Add(collision.transform);
+            GameObject killUIObj = Instantiate(uiObj, 
+                collision.transform.position, Quaternion.identity); 
+            killUIObj.transform.parent = collision.transform;
         }    
     }
 }

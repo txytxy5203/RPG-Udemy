@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlackHoleSKill : MonoBehaviour
+public class BlackHoleSKill : Skill
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject blackHoleObj;
+    public void CreatBlackHole()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Instantiate(blackHoleObj, player.transform.position, Quaternion.identity);
     }
 }

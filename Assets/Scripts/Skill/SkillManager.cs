@@ -27,5 +27,6 @@ public class SkillManager : MonoBehaviour
         dash = GetComponent<DashSkill>();
         clone = GetComponent<CloneSkill>();
         sword = GetComponent<SwordSkill>();
+        blackHole = GetComponent<BlackHoleSKill>();
     }
 }

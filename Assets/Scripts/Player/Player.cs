@@ -95,6 +95,11 @@ public class Player : Entity
         stateMachine.currentState.Update();
         Dash();
 
+        //Test temp
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            SkillManager.instance.blackHole.CreatBlackHole();
+        }
         
     }
     void Dash()

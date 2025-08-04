@@ -67,6 +67,7 @@ public class Enemy : Entity
         {
             moveSpeed = 0;
             animator.speed = 0;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
         else
         {
