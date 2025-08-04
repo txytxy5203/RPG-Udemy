@@ -195,6 +195,8 @@ public class SwordSkillController : MonoBehaviour
                     }
                     break;
                 case E_SwordType.Spin:
+                    collision.GetComponent<Enemy>()?.Damage();
+                    break;
                 default:
                     break;
             }
