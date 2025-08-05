@@ -12,12 +12,12 @@ public class CloneSkill : Skill
     {
         base.UseSkill();
     }
-    public void CreateClone(Transform trans)
+    public void CreateClone(Transform trans, Vector3 _offset)
     {
         //实例化的时候位置就设置好
         GameObject cloneObj = Instantiate(clonePrefab);
         cloneObj.GetComponent<CloneSkillController>().SetupClone(trans, 
-            cloneDuration, canAttack);
+            cloneDuration, canAttack, _offset);
         
     }
 }

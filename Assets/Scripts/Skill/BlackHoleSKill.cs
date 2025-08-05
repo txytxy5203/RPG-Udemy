@@ -4,9 +4,35 @@ using UnityEngine;
 
 public class BlackHoleSKill : Skill
 {
-    public GameObject blackHoleObj;
-    public void CreatBlackHole()
+    [SerializeField] int amountOfAttacks;
+    [SerializeField] float cloneCooldowm;
+    [Space]
+    [SerializeField] GameObject blackHoleObj;
+    [SerializeField] float maxSize;
+    [SerializeField] float growSpeed;
+    [SerializeField] float shrinkSpeed;
+
+
+    public override bool CanUseSkill()
     {
-        Instantiate(blackHoleObj, player.transform.position, Quaternion.identity);
+        return base.CanUseSkill();
+    }
+    public override void UseSkill()
+    {
+        base.UseSkill();
+        GameObject newBlackHole = Instantiate(blackHoleObj, player.transform.position, 
+            Quaternion.identity);
+        newBlackHole.GetComponent<BlackHoleSkillController>().SetupBlackHole(maxSize,
+            growSpeed, shrinkSpeed, amountOfAttacks, cloneCooldowm);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
     }
 }

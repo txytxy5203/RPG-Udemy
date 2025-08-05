@@ -22,6 +22,11 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
 
+        if (player.playerInput.actions["BlackHole"].ReadValue<float>() == 1f)
+        {
+            stateMachine.ChangeState(player.blackHoleState);
+        }
+
         if (player.playerInput.actions["Counter"].ReadValue<float>() == 1f)
         {
             stateMachine.ChangeState(player.counterAttackState);

@@ -13,7 +13,7 @@ public class PlayerDashState : PlayerState
     {
         base.Enter();
         player.StartDashTimer();
-        SkillManager.instance.clone.CreateClone(player.transform);
+        SkillManager.instance.clone.CreateClone(player.transform, Vector3.zero);
     }
 
     public override void Exit()
