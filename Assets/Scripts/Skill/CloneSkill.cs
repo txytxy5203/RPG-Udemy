@@ -18,6 +18,8 @@ public class CloneSkill : Skill
         GameObject cloneObj = Instantiate(clonePrefab);
         cloneObj.GetComponent<CloneSkillController>().SetupClone(trans, 
             cloneDuration, canAttack, _offset);
-        
+        //偏移值为正的话 就把clone的翻转一下
+        if (_offset.x > 0f)
+            cloneObj.transform.Rotate(0,180,0);
     }
 }

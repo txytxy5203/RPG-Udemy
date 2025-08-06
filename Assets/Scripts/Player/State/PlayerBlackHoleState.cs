@@ -6,6 +6,7 @@ public class PlayerBlackHoleState : PlayerState
 {
     float flyTime = .4f;
     bool skillUsed;
+    float defaultGravity;
     public PlayerBlackHoleState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
@@ -13,6 +14,7 @@ public class PlayerBlackHoleState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        defaultGravity = player.rb.gravityScale;
         skillUsed = false;
         stateTimer = flyTime;
         player.rb.gravityScale = 0f;
@@ -21,6 +23,8 @@ public class PlayerBlackHoleState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        player.rb.gravityScale = defaultGravity;
+        player.MakeTransprent(false);
     }
 
     public override void Update()
@@ -38,6 +42,11 @@ public class PlayerBlackHoleState : PlayerState
                 if(player.skillManager.blackHole.CanUseSkill())
                     skillUsed = true;
             }
+        }
+
+        if (player.skillManager.blackHole.SkillCompleted())
+        {
+            stateMachine.ChangeState(player.airState);
         }
     }
 }

@@ -13,6 +13,7 @@ public class Entity : MonoBehaviour
     public Animator animator { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public EntityFX fx { get; private set; }
+    public SpriteRenderer sr { get; private set; }
 
     #region Åö×²¼ì²â
     [Header("Åö×²¼ì²â")]
@@ -48,6 +49,7 @@ public class Entity : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         fx = GetComponent<EntityFX>();
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
     protected virtual void Update()
     {
@@ -122,5 +124,16 @@ public class Entity : MonoBehaviour
         isKnocked = true;
         yield return new WaitForSeconds(.07f);
         isKnocked = false;
+    }
+    public void MakeTransprent(bool _transprent)
+    {
+        if (_transprent)
+        {
+            sr.color = Color.clear;
+        }
+        else 
+        { 
+            sr.color = Color.white;
+        }
     }
 }
