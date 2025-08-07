@@ -64,20 +64,7 @@ public class CloneSkillController : MonoBehaviour
                 1 << LayerMask.NameToLayer("Enemy"));
         foreach (Collider2D collider in colliders)
         {
-            Debug.Log("attack enemy");
             collider.gameObject.GetComponent<Entity>()?.Damage();
         }
-    }
-    /// <summary>
-    /// 自动索敌 暂时先不添加 后续可以再加上
-    /// </summary>
-    void FaceClosestTarget()
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, 25);
-        Collider2D closestCollider = colliders.OrderBy(
-            collider => 
-                Vector2.Distance(this.transform.position, collider.transform.position))
-                    .FirstOrDefault();
-
-    }
+    }  
 }

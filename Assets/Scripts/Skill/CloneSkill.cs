@@ -8,6 +8,9 @@ public class CloneSkill : Skill
     [SerializeField] bool canAttack;
     [SerializeField] private GameObject clonePrefab;
     [SerializeField] float cloneDuration;
+
+    [SerializeField] bool creatCloneOnDashStart;
+    [SerializeField] bool creatCloneOnDashOver;
     public override void UseSkill()
     {
         base.UseSkill();
@@ -21,5 +24,15 @@ public class CloneSkill : Skill
         //偏移值为正的话 就把clone的翻转一下
         if (_offset.x > 0f)
             cloneObj.transform.Rotate(0,180,0);
+    }
+    public void CreateCloneOnDashStart()
+    {
+        if (creatCloneOnDashStart)
+            CreateClone(player.transform, Vector3.zero);
+    }
+    public void CreateCloneOnDashOver()
+    {
+        if (creatCloneOnDashOver)
+            CreateClone(player.transform, Vector3.zero);
     }
 }

@@ -97,13 +97,15 @@ public class Player : Entity
         stateMachine.currentState.Update();
         Dash();
 
-        ////Test temp
-        //if(Input.GetKeyDown(KeyCode.E))
-        //{
-            
-        //}
-        
+        //Test temp
+        playerInput.actions["Crystal"].performed += Crystal_performed;        
     }
+
+    private void Crystal_performed(InputAction.CallbackContext obj)
+    {
+        skillManager.crystal.CanUseSkill();
+    }
+
     void Dash()
     {
         //这里把Dash的状态切换写到了Player中

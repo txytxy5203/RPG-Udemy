@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Skill : MonoBehaviour
@@ -29,5 +30,16 @@ public class Skill : MonoBehaviour
     public virtual void UseSkill()
     {
 
+    }
+    protected virtual Transform FindClosestEnemy(Transform _checkTrans)
+    {
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(_checkTrans.position, 
+                                 50, 1 << LayerMask.NameToLayer("Enemy"));
+        Collider2D closestCollider = colliders.OrderBy(
+            collider =>
+                Vector2.Distance(_checkTrans.position, collider.transform.position))
+                    .FirstOrDefault();
+        return closestCollider.transform;
     }
 }
